@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SADISTIC API</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom right, #1b1c22, #2e1a47);
+      color: #f0f0f0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      padding-top: 60px;
+    }
+
+     .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      background: rgba(40, 40, 60, 0.85);
+      backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .topbar .title {
+      font-size: 20px;
+      font-weight: 900;
+      background: linear-gradient(to right, #60a5fa, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 1px;
+    }
+
+    .login-topbar {
+      position: absolute;
+      right: 20px;
+      top: 14px;
+      background: #7c3aed;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      color: white;
+      text-decoration: none;
+      transition: background 0.25s ease;
+    }
+
+    .login-topbar:hover {
+      background: #6d28d9;
+    }
+
+    .menu-btn {
+      position: fixed;
+      top: 16px;
+      left: 20px;
+      font-size: 26px;
+      cursor: pointer;
+      color: #a78bfa;
+      z-index: 1001;
+    }
+
+    .side-menu {
+      position: fixed;
+      top: 0;
+      left: -260px;
+      width: 240px;
+      height: 100%;
+      background: rgba(40, 40, 60, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 20px;
+      box-shadow: 5px 0 15px rgba(0, 0, 0, 0.3);
+      transition: left 0.3s ease;
+      z-index: 998;
+    }
+
+    .side-menu.active {
+      left: 0;
+    }
+
+    .side-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: #a78bfa;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .info-box {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-bottom: 15px;
+    }
+
+    .info-box a {
+      color: #ffffff;
+      font-size: 14px;
+      text-decoration: none;
+      font-weight: 500;
+      display: block;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    .desc {
+      font-size: 16px;
+      text-align: center;
+      color: #ccc;
+      margin-bottom: 40px;
+    }
+
+    .plans {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .plan {
+      background: rgba(124, 58, 237, 0.1);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 4px 24px rgba(124, 58, 237, 0.25);
+    }
+
+    .plan h3 {
+      margin-top: 0;
+      font-size: 20px;
+      color: #facc15;
+    }
+
+    .plan ul {
+      padding-left: 18px;
+    }
+
+    .price {
+      margin: 12px 0;
+      font-weight: bold;
+    }
+
+    .usd {
+      font-size: 13px;
+      color: #aaa;
+    }
+
+    .buy-text {
+      color: #c084fc;
+      text-decoration: underline;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .buy-text:hover {
+      color: #a855f7;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 50px;
+      font-size: 11px;
+      color: #888;
+    }
+
+    .thanks {
+      color: #999;
+      font-size: 11px;
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .profile-wrapper {
+      background: rgba(124, 58, 237, 0.1);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 30px 20px;
+      margin-top: 60px;
+      text-align: center;
+      box-shadow: 0 0 25px rgba(124, 58, 237, 0.2);
+    }
+
+    .profile-wrapper img.profile-img {
+      width: 120px;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      margin-bottom: 20px;
+    }
+
+    .profile-wrapper h2 {
+      font-size: 18px;
+      margin: 10px 0;
+      color: #f0f0f0;
+    }
+
+    .profile-wrapper p {
+      font-size: 14px;
+      color: #ccc;
+      max-width: 700px;
+      margin: 10px auto 18px;
+      line-height: 1.6;
+    }
+
+    .link-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 25px;
+      flex-wrap: wrap;
+    }
+
+    .btn-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 20px;
+      background: rgba(124, 58, 237, 0.15);
+      color: white;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s ease;
+      box-shadow: 0 0 8px rgba(124, 58, 237, 0.25);
+    }
+
+    .btn-link:hover {
+      background: rgba(124, 58, 237, 0.3);
+    }
+
+    .btn-link img {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="title">⚡ SADISTIC </div>
+    <a href="login" class="login-topbar">Login</a>
+  </div>
+
+  <div class="menu-btn" onclick="toggleMenu()">☰</div>
+
+  <div class="side-menu" id="menu">
+    <div class="side-title">SADISTIC API</div>
+    <div class="info-box">
+      <a href="https://t.me/XwyWays" target="_blank">➤ Developer: WaysModzz</a>
+    </div>
+    <div class="info-box">
+      <a href="https://t.me/XwyWays" target="_blank">➤ Channel: WaysModzz</a>
+    </div>
+    <div class="thanks">
+      Thanks for support<br/>SADISTIC API
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="desc">Platform serangan spam & crash WhatsApp berbasis API untuk testing perangkat lunak secara cepat dan fleksibel.</div>
+
+    <div class="plans">
+      <div class="plan">
+        <h3>🥉 Paket Dasar</h3>
+        <ul>
+          <li>Spam: unlimited</li>
+          <li>Kunci: 3 hari</li>
+          <li>Dukungan dasar</li>
+        </ul>
+        <div class="price">Rp 35.900 <span class="usd">(~$2.30)</span></div>
+        <a href="https://t.me/XwyWays" target="_blank" class="buy-text">Beli Paket Ini</a>
+      </div>
+
+      <div class="plan">
+        <h3>🥈 Premium Plan</h3>
+        <ul>
+          <li>Spam cepat</li>
+          <li>Kunci: 15 hari</li>
+          <li>Dukungan prioritas</li>
+        </ul>
+        <div class="price">Rp 50.900 <span class="usd">(~$3.25)</span></div>
+        <a href="https://t.me/XwyWays" target="_blank" class="buy-text">Beli Paket Ini</a>
+      </div>
+
+      <div class="plan">
+        <h3>🥇 Ultimate Plan</h3>
+        <ul>
+          <li>Spam brutal</li>
+          <li>Kunci: 30 hari</li>
+          <li>Full Support</li>
+        </ul>
+        <div class="price">Rp 180.000 <span class="usd">(~$11.50)</span></div>
+        <a href="https://t.me/XwyWays" target="_blank" class="buy-text">Beli Paket Ini</a>
+      </div>
+    </div>
+
+    <div class="profile-wrapper">
+      <img class="profile-img" src="https://files.catbox.moe/sacgzq.jpeg" alt="RenXiter Profile">
+      <h2>( ❄️ ) Olá Eu sou Ren</h2>
+      <p>私は ─ WhatsApp テムを破壊しようとしているボットです。賢くご利用ください。</p>
+      <p><strong>🧠 Tentang Saya (ID):</strong><br> Saya adalah seorang developer script bug WhatsApp yang berfokus pada pengembangan dan eksploitasi sistem WhatsApp. Saya juga spesialis keamanan dalam pembuatan dan pelindungan script WhatsApp — baik untuk sistem berbasis Telegram maupun langsung via WhatsApp.</p>
+      <p><strong>🧠 About Me (EN):</strong><br> I am a WhatsApp bug script developer focused on system exploitation and security, including creating and securing WA bots integrated with Telegram or direct WA use.</p>
+      <p><strong>🛡️ Layanan:</strong><br> • Pembuatan & optimasi script bug WA (FC, delay, loop, dsb.)<br> • Keamanan dan patch sistem WA bot<br> • Integrasi bug via Telegram bot</p>
+      <div class="link-buttons">
+        <a href="https://t.me/XwyWays" target="_blank" class="btn-link">
+          <img src="https://files.catbox.moe/sacgzq.jpeg" alt="Telegram">Telegram
+        </a>
+        <a href="https://t.me/sadisticbro" target="_blank" class="btn-link">
+          <img src="https://files.catbox.moe/pccd0u.jpg" alt="Channel">Channel
+        </a>
+      </div>
+    </div>
+
+    <div class="footer">© 2025 Hasclaw Network — Powered by WaysModzz</div>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('menu').classList.toggle('active');
+    }
+  </script>
+
+</body>
+</html>
